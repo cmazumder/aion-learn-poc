@@ -1,0 +1,118 @@
+[
+  {
+    "project": "CHARGE-OPS",
+    "key": "CO-123",
+    "summary": "Charging speed at station #789 is extremely slow",
+    "description": "Multiple users have reported that charging station #789 is charging at a significantly reduced speed (around 3kW instead of the expected 7kW). The issue seems to be persistent throughout the day.",
+    "comments": [
+      {
+        "author": "John Doe, Site Reliability Engineer",
+        "comment": "Initial investigation shows no hardware faults. Power output from the grid is stable. Could this be a firmware issue?"
+      },
+      {
+        "author": "Jane Smith, Firmware Engineer",
+        "comment": "We pushed a new firmware update (v2.3.1) last week. It's possible that a new power management feature is too aggressive. Rolling back the firmware on this station to v2.3.0 for testing."
+      },
+      {
+        "author": "John Doe, Site Reliability Engineer",
+        "comment": "RCA: The firmware update v2.3.1 introduced a bug in the thermal throttling logic, causing the station to prematurely reduce power output. The issue was resolved by applying a hotfix (v2.3.2) that corrects the throttling curve."
+      }
+    ]
+  },
+  {
+    "project": "CHARGE-OPS",
+    "key": "CO-124",
+    "summary": "Payment terminal on station #456 is frozen",
+    "description": "The payment terminal on station #456 is unresponsive. The screen is frozen on the \"Welcome\" message, and it does not respond to touch or card swipes. A remote reboot of the station did not resolve the issue.",
+    "comments": [
+      {
+        "author": "Support Team",
+        "comment": "A technician has been dispatched to the site to perform a hard reboot of the payment terminal."
+      },
+      {
+        "author": "Field Operations",
+        "comment": "Technician confirmed that a hard reboot resolved the issue. This seems to be a recurring problem with this model of payment terminal. We should investigate the root cause."
+      },
+      {
+        "author": "Firmware Team",
+        "comment": "RCA: The payment terminal's memory was exhausted due to a memory leak in the card reader driver. A firmware update for the payment terminal is required. As a temporary workaround, a nightly reboot has been scheduled for all stations with this terminal model."
+      }
+    ]
+  },
+  {
+    "project": "CHARGE-OPS",
+    "key": "CO-125",
+    "summary": "Station #101 is offline",
+    "description": "Station #101 has been offline for the past 2 hours. It is not responding to remote commands, and it is not sending any heartbeats.",
+    "comments": [
+      {
+        "author": "Network Operations",
+        "comment": "The station is located in an area with known cellular connectivity issues. It's possible that the modem has lost its connection."
+      },
+      {
+        "author": "Support Team",
+        "comment": "A local technician has been asked to check the physical status of the station and the modem."
+      },
+      {
+        "author": "Hardware Team",
+        "comment": "RCA: The cellular modem had entered a fault state and was not able to reconnect to the network. A power cycle of the modem resolved the issue. We are investigating a permanent solution to make the modem more resilient to network fluctuations."
+      }
+    ]
+  },
+  {
+    "project": "CHARGE-OPS",
+    "key": "CO-126",
+    "summary": "Firmware update failed on station #321",
+    "description": "Attempted to update firmware on station #321 from v2.3.2 to v2.4.0, but the update failed. The station is now reporting a 'FirmwareUpdateFailed' status.",
+    "comments": [
+      {
+        "author": "Support Team",
+        "comment": "Customer support initiated a remote firmware update, which failed. The station is currently operational on the old firmware, but the new features are not available."
+      },
+      {
+        "author": "QA Engineer",
+        "comment": "I am trying to reproduce this in the lab. Can you provide the logs from the failed update attempt? I am also checking the release notes for v2.4.0 for any known issues."
+      },
+      {
+        "author": "Developer",
+        "comment": "The logs show a 'SignatureMismatch' error. It seems the firmware signature verification failed. This could be due to a corrupted firmware file or an issue with the signing key. I am investigating the build process for v2.4.0."
+      }
+    ]
+  },
+  {
+    "project": "CHARGE-SEC",
+    "key": "CS-101",
+    "summary": "Potential vulnerability in TLS implementation",
+    "description": "A security audit has identified a potential vulnerability in the TLS implementation of the charging station firmware. The station may be susceptible to a man-in-the-middle attack.",
+    "comments": [
+      {
+        "author": "Security Team",
+        "comment": "We have identified that the firmware is not correctly validating the Central System's certificate chain. This is a critical vulnerability and needs to be addressed immediately."
+      },
+      {
+        "author": "Developer",
+        "comment": "I am reviewing the TLS handshake code. It seems we are not properly handling certificate pinning. I am working on a patch."
+      },
+      {
+        "author": "QA Engineer",
+        "comment": "I will set up a test environment to reproduce the man-in-the-middle attack and validate the patch once it is ready."
+      }
+    ]
+  },
+  {
+    "project": "CHARGE-OPS",
+    "key": "CO-127",
+    "summary": "Race condition in SpoolerVaultAuth during initialization",
+    "description": "Under heavy load, concurrent requests to `api_key_from_machine_id` can cause an `InvalidPath` exception from the Vault client. This happens if the secrets engine at `spooler/stations` is not yet fully mounted when the first requests arrive.",
+    "comments": [
+      {
+        "author": "Chayan Mazumder, Platform Engineer",
+        "comment": "This appears to be a startup race condition. The `on_startup` hook initializes Vault, but web requests can arrive before it's complete. We need a locking mechanism."
+      },
+      {
+        "author": "Jane Smith, Developer",
+        "comment": "I've reproduced this locally. I'm working on a fix in PR #4567 that adds a lock and retry logic to the `api_key_from_machine_id` method. This should make the service more robust during cold starts."
+      }
+    ]
+  }
+]

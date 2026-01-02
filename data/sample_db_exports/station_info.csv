@@ -1,0 +1,7 @@
+station_id,model,firmware_version,location,status
+CP001,AION-1,v2.3.1,New York,ACTIVE
+CP123,AION-1,v2.3.0,San Francisco,ACTIVE
+CP456,AION-1,v2.3.1,London,ACTIVE
+FooBar789,AION-1,v2.3.1,Tokyo,ACTIVE
+CP101,AION-1,v2.3.2,Sydney,OFFLINE
+MB321,AION-1,v2.3.2,Paris,ACTIVE

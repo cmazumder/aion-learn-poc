@@ -1,0 +1,51 @@
+{
+  "url": "https://api.github.com/repos/chargepoint-emu/aion-poc/pulls/42",
+  "id": 12345,
+  "number": 42,
+  "state": "closed",
+  "title": "feat: Add Thermal Throttling Logic",
+  "user": {
+    "login": "janesmith"
+  },
+  "body": "This pull request introduces a new thermal throttling feature to prevent the charging station from overheating during prolonged use. The new `PowerManagement` module monitors the temperature of the main processor and the charging controller. If the temperature exceeds the configured threshold, the charging power is reduced by 50%.\n\nThis change addresses the issue of unexpected shutdowns reported in JIRA ticket CO-119.",
+  "comments": [
+    {
+      "user": {
+        "login": "johndoe"
+      },
+      "body": "Looks good overall. Have you tested this with the new payment terminal hardware? We've seen some issues with power draw on that model."
+    },
+    {
+      "user": {
+        "login": "janesmith"
+      },
+      "body": "Good point. I've run the tests on the new hardware, and the power draw is within acceptable limits. I've added the test results to the JIRA ticket."
+    }
+  ],
+  "commits": [
+    {
+      "sha": "abcdef123456",
+      "commit": {
+        "message": "feat: add PowerManagement module"
+      }
+    },
+    {
+      "sha": "fedcba654321",
+      "commit": {
+        "message": "feat: implement thermal throttling logic"
+      }
+    },
+    {
+      "sha": "123456abcdef",
+      "commit": {
+        "message": "test: add unit tests for PowerManagement module"
+      }
+    },
+    {
+      "sha": "654321fedcba",
+      "commit": {
+        "message": "docs: update documentation for thermal management"
+      }
+    }
+  ]
+}

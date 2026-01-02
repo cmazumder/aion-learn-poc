@@ -1,0 +1,9 @@
+
+Google Changed RAG Forever with NEW Gemini File Search Tool
+# https://www.youtube.com/watch?v=DlVMMLmmTOA
+
+RAG
+    Semantic Chunking
+    Document Embedding
+    Vector Indexing
+    Layered Retrieval - Look through all doc layers to find the most relevant info

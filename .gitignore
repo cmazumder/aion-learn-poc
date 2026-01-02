@@ -1,0 +1,60 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+.mypy_cache/
+.pytest_cache/
+.hypothesis/
+*.egg-info/
+dist/
+build/
+*.so
+
+# IDEs
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project-specific - Database storage directories
+*_db/
+data/db/
+*db_storage/
+chroma_store/
+faiss_store/
+vector_store/
+chromadb/
+*.db
+*.sqlite
+*.sqlite3
+
+# Project-specific - lock file
+poetry.lock
+
+.env
+
+# Logs
+logs/
+*.log
+*.log.*
+debug/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp

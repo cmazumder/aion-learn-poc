@@ -1,0 +1,4 @@
+station_id,model,firmware_version,board_config_type,last_seen
+CP5000-A,CP5000,v3.4.1,standard,2024-05-21T10:35:00Z
+CP4001-B,CP4000,v2.8.0,legacy_cpnk,2024-05-20T18:00:00Z
+CP6000-C,CP6000,v4.1.0,standard,2024-05-21T11:00:00Z
